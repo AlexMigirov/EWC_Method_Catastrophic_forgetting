@@ -79,7 +79,7 @@ $$ \mathcal{L}(\theta) = \mathcal{L}_B(\theta) + \sum_i \frac{\lambda}{2} F_i (\
 *   $\sum_i$: The penalty is calculated as a sum over every single parameter $i$ in the network.
 *   $\frac{\lambda}{2}$: A hyperparameter ($\lambda$) that controls how important it is to remember the old task relative to learning the new one.
 *   $F_i$: The diagonal of the Fisher Information Matrix for parameter $i$. This acts as the "stiffness" of the spring. If a parameter was highly crucial for Task A, $F_i$ will be very large, resulting in a massive penalty if the network tries to change it.
-*   $(\theta_i - \theta^*_{A,i})^2$: A quadratic penalty that measures how far the current weight ($\theta_i$) has drifted from its optimal value found during Task A ($\theta^*_{A,i}$).
+*   $\(\theta_i - \theta^*_{A,i})^2$: A quadratic penalty that measures how far the current weight ($\theta_i$) has drifted from its optimal value found during Task A ($\theta^*_{A,i}$).
 
 ## 4. Phase 3: Evaluation and Comparison against Original Paper
 
