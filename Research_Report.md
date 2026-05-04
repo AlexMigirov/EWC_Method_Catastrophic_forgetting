@@ -56,6 +56,31 @@ Based on the provided project instructions, the primary objective is to fully re
 *   **Challenges in Medical AI:** Deep learning models in healthcare must adapt to new diseases, differing imaging protocols, and demographic shifts without forgetting how to diagnose previous conditions.
 *   **Benchmark Utility:** It highlights that techniques like EWC, LwF (Learning without Forgetting), and Replay need rigorous testing in class-incremental and task-incremental setups specific to medical imaging. Utilizing this benchmark offers a perfect avenue for the project's **bonus objective**—extending the classic EWC algorithm to solve a more modern, high-impact problem.
 
+## 3.5 Mathematical Foundations of EWC (Extracted from Kirkpatrick et al.)
+
+The original paper frames the learning process from a probabilistic perspective. Finding the optimal parameters ($\theta$) for a neural network given some data ($D$) is equivalent to computing the conditional probability $p(\theta|D)$.
+
+According to Bayes' rule (Equation 1 in the paper):
+$$ \log p(\theta|D) = \log p(D|\theta) + \log p(\theta) - \log p(D) $$
+
+When learning a new task (Task B) after already learning Task A, the data is split into $D_A$ and $D_B$. The equation is rearranged (Equation 2 in the paper) to show how previous knowledge is incorporated:
+$$ \log p(\theta|D) = \log p(D_B|\theta) + \log p(\theta|D_A) - \log p(D_B) $$
+
+*   $\log p(D_B|\theta)$ is simply the negative loss function for the new Task B.
+*   $\log p(\theta|D_A)$ represents all the information the network learned from Task A. This is the "posterior probability" of the weights.
+
+Because calculating the true posterior probability is computationally intractable for deep neural networks, the authors use a Laplace approximation. They approximate the posterior as a Gaussian distribution with a mean given by the optimal weights from Task A ($\theta^*_A$) and a precision given by the diagonal of the **Fisher Information Matrix ($F$)**.
+
+This leads to the core **EWC Loss Function** (Equation 3 in the paper) that we implemented:
+$$ \mathcal{L}(\theta) = \mathcal{L}_B(\theta) + \sum_i \frac{\lambda}{2} F_i (\theta_i - \theta^*_{A,i})^2 $$
+
+**Explanation of the terms:**
+*   $\mathcal{L}_B(\theta)$: The standard loss (e.g., cross-entropy) for the current task being learned (Task B).
+*   $\sum_i$: The penalty is calculated as a sum over every single parameter $i$ in the network.
+*   $\frac{\lambda}{2}$: A hyperparameter ($\lambda$) that controls how important it is to remember the old task relative to learning the new one.
+*   $F_i$: The diagonal of the Fisher Information Matrix for parameter $i$. This acts as the "stiffness" of the spring. If a parameter was highly crucial for Task A, $F_i$ will be very large, resulting in a massive penalty if the network tries to change it.
+*   $(\theta_i - \theta^*_{A,i})^2$: A quadratic penalty that measures how far the current weight ($\theta_i$) has drifted from its optimal value found during Task A ($\theta^*_{A,i}$).
+
 ## 4. Phase 3: Evaluation and Comparison against Original Paper
 
 We successfully wrote a testing script (`src/plot_results.py`) that trained both a baseline model (Standard Stochastic Gradient Descent - SGD) and an Elastic Weight Consolidation (EWC) model on a sequence of 3 Permuted MNIST tasks. To evaluate catastrophic forgetting, we continuously tracked each model's performance on **Task 1** as they sequentially learned Task 2 and Task 3.
