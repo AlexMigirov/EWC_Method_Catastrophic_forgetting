@@ -9,14 +9,14 @@ The original paper by Kirkpatrick et al. introduced Elastic Weight Consolidation
 ## 2. The Algorithmic Improvement
 To fulfill the requirement of "improving upon the paper's results," we went beyond a simple domain shift (the LifeLonger simulation) and implemented **Online EWC** (oEWC), a mathematically rigorous enhancement to the algorithm (introduced by DeepMind in 2018).
 
-We wrote the implementation in `src/improvement.py`. It features two major upgrades:
+We wrote the implementation in `Bonus Solution/improvement.py`. It features two major upgrades:
 1.  **$O(1)$ Constant Memory Optimization:** Instead of saving an array of matrices, our `OnlineEWC` class computes a single **Running Average** of the Fisher Information Matrix using a decay factor ($\gamma$). 
     *   **Formula:** $\tilde{F}_{new} = \gamma \tilde{F}_{old} + F_{current}$
     *   **Result:** No matter if the network learns 3 tasks or 3,000 tasks, it only ever stores exactly **1** Fisher Information Matrix.
 2.  **Modernized Architecture:** We upgraded the standard MLP to an `ImprovedMLP` by injecting `nn.Dropout(0.2)` layers between the hidden states. This forces the network to learn more robust, distributed representations of the data rather than relying on brittle, localized weights.
 
 ## 3. Results and Proof of Improvement
-Running `src/improvement.py` yielded the following output:
+Running `Bonus Solution/improvement.py` yielded the following output:
 
 ```text
 --- Training on Task 1/3 ---
