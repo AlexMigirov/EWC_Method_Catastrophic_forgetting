@@ -24,6 +24,8 @@ This document serves as the required log of AI interactions, prompts, and workfl
 *   **User Prompt:** *"yes, and i want you to compare the results of the graph with the articals... update the report file every time"*
 *   **AI Action:** The AI wrote a custom plotting script (`src/plot_results.py`) utilizing `matplotlib`. It trained both a standard SGD model and the EWC model, continuously tracking their accuracy on Task 1.
 *   **AI Action:** Generated `results_graph.png` and updated `Research_Report.md` to document that the Standard SGD model dropped to ~56% accuracy, while the EWC model retained ~95% accuracy, successfully mirroring the original paper's findings.
+*   **User Prompt:** *"is 1 graph is enough?"* -> *"yes" (to generate the second graph)*
+*   **AI Action:** The AI identified that the original paper requires a second graph for "Average performance across multiple sequential tasks". The AI created a new script (`src/plot_graph2.py`), ran it, generated `results_graph_2_average.png`, and appended the findings to the Research Report.
 
 ## 5. Bonus Objective (LifeLonger Benchmark)
 *   **User Prompt:** *"create a new file called 'bonus_solution' and put the code\answer\results in there."*
