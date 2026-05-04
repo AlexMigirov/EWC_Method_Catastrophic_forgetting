@@ -43,3 +43,9 @@ This document serves as the required log of AI interactions, prompts, and workfl
 **Elastic Weight Consolidation (EWC)** solves this by acting as an add-on to SGD. Before starting Task 2, EWC calculates the **Fisher Information Matrix** to identify which specific weights were most critical for Task 1. While learning Task 2, EWC acts like a rubber band—it allows SGD to easily change "unimportant" weights, but heavily penalizes any changes to the crucial weights needed for Task 1. 
 
 By comparing them, we prove the algorithm works: the Standard SGD graph plummets (showing forgetting), while the EWC graph remains stable, proving it successfully protected the network's prior knowledge.
+
+## 7. True Algorithmic Improvement (Online EWC)
+*   **User Prompt:** *"i think you have not suggested an improvement for the results of the article. you just wrote a standalone script... The EWC model jsut successfully learned to detect a second disease without forgetting the first."*
+*   **AI Action:** Acknowledged that applying the algorithm to a new domain is a domain shift, not an algorithmic improvement. 
+*   **AI Action:** Implemented **Online EWC** (`src/improvement.py`). This addresses the fatal $O(N)$ linear memory scaling flaw of the original 2017 paper by using a mathematically rigorous running average to achieve $O(1)$ constant memory complexity. Upgraded the MLP with Dropout layers to prevent overfitting.
+*   **AI Action:** Documented the mathematical flaw, the architectural fix, and the empirical proof of $O(1)$ memory efficiency in `algorithmic_improvement.md`.
