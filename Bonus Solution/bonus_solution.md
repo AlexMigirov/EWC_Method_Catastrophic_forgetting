@@ -1,7 +1,7 @@
 # Bonus Objective: Applying EWC to the LifeLonger Medical Benchmark
 
 ## 1. The Goal and The Answer
-As requested in the project instructions, a +5 bonus is awarded for improving upon the paper's results, proposing alternative data analysis approaches, or adapting the algorithms to modern challenges.
+As requested in the project instructions, proposing alternative data analysis approaches, or adapting the algorithms to modern challenges.
 
 **Our Approach:** We adapted the Elastic Weight Consolidation (EWC) algorithm from the original paper (which focused on MNIST and Atari) and applied it to the core concept of the **LifeLonger benchmark: Continual Disease Classification**. 
 

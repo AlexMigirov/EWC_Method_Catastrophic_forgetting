@@ -5,7 +5,8 @@ import torch.optim as optim
 from copy import deepcopy
 import sys
 import os
-sys.path.append(os.path.dirname(__file__))
+# Append the parent directory (project root) so it can find the 'src' package
+sys.path.append(os.path.abspath(os.path.join(os.path.dirname(__file__), '..', 'src')))
 
 from data import get_dataloaders, get_permutation
 from main import evaluate

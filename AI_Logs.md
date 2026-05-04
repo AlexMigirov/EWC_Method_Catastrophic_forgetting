@@ -47,5 +47,5 @@ By comparing them, we prove the algorithm works: the Standard SGD graph plummets
 ## 7. True Algorithmic Improvement (Online EWC)
 *   **User Prompt:** *"i think you have not suggested an improvement for the results of the article. you just wrote a standalone script... The EWC model jsut successfully learned to detect a second disease without forgetting the first."*
 *   **AI Action:** Acknowledged that applying the algorithm to a new domain is a domain shift, not an algorithmic improvement. 
-*   **AI Action:** Implemented **Online EWC** (`src/improvement.py`). This addresses the fatal $O(N)$ linear memory scaling flaw of the original 2017 paper by using a mathematically rigorous running average to achieve $O(1)$ constant memory complexity. Upgraded the MLP with Dropout layers to prevent overfitting.
+*   **AI Action:** Implemented **Online EWC** (`Bonus Solution/improvement.py`). This addresses the fatal $O(N)$ linear memory scaling flaw of the original 2017 paper by using a mathematically rigorous running average to achieve $O(1)$ constant memory complexity. Upgraded the MLP with Dropout layers to prevent overfitting.
 *   **AI Action:** Documented the mathematical flaw, the architectural fix, and the empirical proof of $O(1)$ memory efficiency in `algorithmic_improvement.md`.
