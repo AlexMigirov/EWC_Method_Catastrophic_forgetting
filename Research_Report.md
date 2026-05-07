@@ -89,6 +89,13 @@ We successfully wrote a testing script (`src/plot_results.py`) that trained both
 *   **Standard SGD Baseline:** 56.75%
 *   **EWC Model:** 95.75%
 
+### Performance Comparison Table (Forgetting vs. Retention)
+
+| Metric | Standard SGD (Baseline) | EWC Model (Proposed) | Conclusion / Result |
+| :--- | :--- | :--- | :--- |
+| **Final Accuracy on Task 1** (After learning 3 tasks) | **56.75%** | **95.75%** | SGD suffers **Catastrophic Forgetting**. EWC successfully **Retains** knowledge. |
+| **Average Accuracy** (Across all 3 tasks) | **87.84%** | **96.47%** | SGD's average drops over time. EWC scales gracefully without overwriting. |
+
 **Analysis and Comparison to Kirkpatrick et al. (2017):**
 These results perfectly mirror the findings presented in the original scientific paper. 
 *   As seen in the `results_graph.png` we generated in the project root, the **Standard SGD model** suffers from severe catastrophic forgetting. The moment it begins training on Task 2, its accuracy on Task 1 immediately plummets, dropping from ~98% down to under 60% by the end of Task 3. 
