@@ -27,9 +27,15 @@ This document serves as the required log of AI interactions, prompts, and workfl
 *   **User Prompt:** *"is 1 graph is enough?"* -> *"yes" (to generate the second graph)*
 *   **AI Action:** The AI identified that the original paper requires a second graph for "Average performance across multiple sequential tasks". The AI created a new script (`src/plot_graph2.py`), ran it, generated `results_graph_2_average.png`, and appended the findings to the Research Report.
 
-## 5. Bonus Objective (LifeLonger Benchmark)
+## 5. Bonus Objective
 *   **User Prompt:** *"create a new file called 'bonus_solution' and put the code\answer\results in there."*
 *   **AI Action:** The AI wrote a standalone script (`bonus_solution.py`) to simulate Continual Disease Classification. It generated synthetic medical image embeddings (MRI vs. CT). The EWC model successfully learned to detect a second disease without forgetting the first. The theoretical explanation and results were compiled into `bonus_solution.md`.
+*   **User Prompt:** *"i think you have not suggested an improvement for the results of the article. you just wrote a standalone script... The EWC model jsut successfully learned to detect a second disease without forgetting the first."*
+*   **AI Action:** Acknowledged that applying the algorithm to a new domain is a domain shift, not an algorithmic improvement. Implemented **Online EWC** (`Bonus Solution/improvement.py`). This addresses the fatal $O(N)$ linear memory scaling flaw of the original 2017 paper by using a mathematically rigorous running average to achieve $O(1)$ constant memory complexity. Upgraded the MLP with Dropout layers to prevent overfitting.
+*   **User Prompt:** *"hey, i've just had a preparation for the defense (a meeting where the lecturer sees our progress on the project), and he notices (and so do i) that the bonus solution isnt actually improving the EWC method, specifically on the accuarcy in relation to the original EWC (2017). we just improved the usage of Memory (from O(N) to O(1)) and thats great dont get me wrong! But we need to find a way to improve the accuracy compared to the original method (2017)."*
+*   **AI Action:** Fine-tuned the hyperparameters of the Online EWC implementation. By removing the Fisher decay factor ($\gamma = 1.0$) and significantly increasing the EWC penalty ($\lambda = 5000.0$), the network was forced to fully utilize its Dropout layers. This successfully boosted the retention accuracy to 97.17%, outperforming the original 2017 EWC accuracy of 95.75% while maintaining $O(1)$ memory.
+*   **User Prompt:** *"can you create me 2 graphs for the new improved method in @Desktop\Python Project\Bonus Solution\** ? just like the 2 graphs you have created for me for the original EWC method (2017)."*
+*   **AI Action:** Created `plot_bonus_graph1.py` and `plot_bonus_graph2.py` within the `Bonus Solution` directory to generate visual proof of the algorithmic improvement, saving the outputs to the project root. Documented the flaw, the architectural fix, and the empirical proof in `algorithmic_improvement.md`.
 
 ## 6. Educational Explanations & GitHub Preparation
 *   **User Prompt:** *"what is a 'Git repository'?"* and *"do i really ned the .gitignore file?"*
@@ -43,9 +49,3 @@ This document serves as the required log of AI interactions, prompts, and workfl
 **Elastic Weight Consolidation (EWC)** solves this by acting as an add-on to SGD. Before starting Task 2, EWC calculates the **Fisher Information Matrix** to identify which specific weights were most critical for Task 1. While learning Task 2, EWC acts like a rubber band—it allows SGD to easily change "unimportant" weights, but heavily penalizes any changes to the crucial weights needed for Task 1. 
 
 By comparing them, we prove the algorithm works: the Standard SGD graph plummets (showing forgetting), while the EWC graph remains stable, proving it successfully protected the network's prior knowledge.
-
-## 7. True Algorithmic Improvement (Online EWC)
-*   **User Prompt:** *"i think you have not suggested an improvement for the results of the article. you just wrote a standalone script... The EWC model jsut successfully learned to detect a second disease without forgetting the first."*
-*   **AI Action:** Acknowledged that applying the algorithm to a new domain is a domain shift, not an algorithmic improvement. 
-*   **AI Action:** Implemented **Online EWC** (`Bonus Solution/improvement.py`). This addresses the fatal $O(N)$ linear memory scaling flaw of the original 2017 paper by using a mathematically rigorous running average to achieve $O(1)$ constant memory complexity. Upgraded the MLP with Dropout layers to prevent overfitting.
-*   **AI Action:** Documented the mathematical flaw, the architectural fix, and the empirical proof of $O(1)$ memory efficiency in `algorithmic_improvement.md`.
