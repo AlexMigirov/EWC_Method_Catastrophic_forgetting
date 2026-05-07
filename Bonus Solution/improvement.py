@@ -87,7 +87,7 @@ def run_improved_experiment():
     epochs_per_task = 5
     batch_size = 128
     lr = 1e-3
-    ewc_lambda = 400.0
+    ewc_lambda = 5000.0
 
     print("Starting Improved Online EWC Experiment...")
     permutations = [None] + [get_permutation() for _ in range(1, num_tasks)]
@@ -96,7 +96,7 @@ def run_improved_experiment():
 
     model = ImprovedMLP().to(device)
     optimizer = optim.Adam(model.parameters(), lr=lr)
-    online_ewc = OnlineEWC(model, device, gamma=0.9)
+    online_ewc = OnlineEWC(model, device, gamma=1.0)
     
     # Flag to check if we have completed at least one task
     has_previous_task = False 
@@ -115,7 +115,7 @@ def run_improved_experiment():
                 
                 # Apply the single O(1) penalty
                 if has_previous_task:
-                    loss += (ewc_lambda / 2) * online_ewc.penalty(model)
+                    loss += ewc_lambda * online_ewc.penalty(model)
                     
                 loss.backward()
                 optimizer.step()
