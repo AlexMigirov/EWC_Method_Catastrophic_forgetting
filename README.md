@@ -44,6 +44,13 @@ python src/plot_results.py
 python src/plot_graph2.py
 ```
 
+### Why Compare Standard SGD with EWC?
+**Standard SGD (Stochastic Gradient Descent)** is the default way neural networks learn. When trained on Task 1, it tunes its weights perfectly. But when moved to Task 2, it ruthlessly overwrites all those weights to minimize the new errors, completely destroying its memory of Task 1. This is known as **Catastrophic Forgetting**.
+
+**Elastic Weight Consolidation (EWC)** solves this by acting as an add-on to SGD. Before starting Task 2, EWC calculates the **Fisher Information Matrix** to identify which specific weights were most critical for Task 1. While learning Task 2, EWC acts like a rubber band—it allows SGD to easily change "unimportant" weights, but heavily penalizes any changes to the crucial weights needed for Task 1. 
+
+By comparing them, we prove the algorithm works: the Standard SGD graph plummets (showing forgetting), while the EWC graph remains stable, proving it successfully protected the network's prior knowledge.
+
 **Running the Bonus Implementations:**
 ```powershell
 # Run the LifeLonger continual disease classification simulation
@@ -51,6 +58,12 @@ python "Bonus Solution\bonus_solution.py"
 
 # Run the O(1) Online EWC algorithmic improvement
 python "Bonus Solution\improvement.py"
+
+# Generate Bonus Graph 1: Performance on Task 1 (Improved Online EWC)
+python "Bonus Solution\plot_bonus_graph1.py"
+
+# Generate Bonus Graph 2: Average Performance (Improved Online EWC)
+python "Bonus Solution\plot_bonus_graph2.py"
 ```
 
 # Development Conventions
