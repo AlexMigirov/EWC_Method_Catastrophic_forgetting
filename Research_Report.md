@@ -32,9 +32,10 @@ Based on the provided project instructions, the primary objective is to fully re
     *   *Graph 2:* Average performance across multiple sequential tasks (e.g., random permutations of MNIST).
 *   **Task 9:** Save all charts and compute the exact comparison metrics against the original figures.
 
-**Phase 4: Bonus Implementation (Applying *LifeLonger* Concepts)**
+**Phase 4: Bonus Implementation (Applying *LifeLonger* Concepts and Online EWC)**
 *   **Task 10:** To fulfill the "alternative analysis approach / improvement" bonus, apply the implemented EWC algorithm to a dataset from the **LifeLonger benchmark** (Continual Disease Classification).
 *   **Task 11:** Compare the EWC performance on the medical datasets against the standard fine-tuning baseline.
+*   **Task 11.5 (Algorithmic Improvement):** Address the $O(N)$ linear memory scaling flaw of the original 2017 paper by implementing **Online EWC**. Tune hyperparameters to not only achieve $O(1)$ memory complexity but also to **improve the baseline accuracy** from 95.75% to 97.17%.
 
 **Phase 5: Finalization**
 *   **Task 12:** Heavily comment the Python code.
