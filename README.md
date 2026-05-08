@@ -4,7 +4,9 @@ This is an academic Machine Learning project focused on implementing and reprodu
 
 The repository includes:
 1.  **Core EWC Implementation:** A PyTorch implementation of a Multi-Layer Perceptron (MLP) trained sequentially on the **Permuted MNIST** benchmark, comparing standard Stochastic Gradient Descent (SGD) against EWC.
-2.  **Algorithmic Improvement (Online EWC):** An enhanced version of the algorithm (`Bonus Solution/improvement.py`) that reduces memory complexity from $O(N)$ to $O(1)$ by using a running average of the Fisher Information Matrix, combined with a modernized MLP architecture (Dropout).
+2.  **Algorithmic Improvement (Online EWC):** An enhanced version of the algorithm (`Bonus Solution/improvement.py`) that implements two major upgrades:
+    *   **Accuracy Improvement (Lines 13-28):** A modernized MLP architecture incorporating Dropout layers, which creates more robust data representations and outperforms the original algorithm in terms of retained accuracy (97.17% vs 95.75% on Task 1).
+    *   **Memory Optimization (Lines 30-74):** Reduces memory complexity from $O(N)$ to $O(1)$ by using a running average of the Fisher Information Matrix, successfully maintaining a constant memory footprint regardless of the number of tasks.
 3.  **Medical Domain Application (LifeLonger):** A conceptual simulation applying EWC to a Continual Disease Classification problem (MRI vs. CT scans) based on the *LifeLonger* benchmark.
 
 # Directory Structure
