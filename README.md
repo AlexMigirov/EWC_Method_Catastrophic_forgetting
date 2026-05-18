@@ -1,3 +1,5 @@
+<img width="800" height="300" alt="image" src="https://github.com/user-attachments/assets/6149396c-2e96-4722-ae3d-d0fab7a44dad" />
+
 # Project Overview
 
 This is an academic Machine Learning project focused on implementing and reproducing the results of the 2017 paper **"Overcoming catastrophic forgetting in neural networks"** by Kirkpatrick et al. The project specifically implements **Elastic Weight Consolidation (EWC)**, a continual learning algorithm designed to mitigate catastrophic forgetting in neural networks by anchoring critical weights using the Fisher Information Matrix.
