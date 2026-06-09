@@ -7,11 +7,6 @@ Based on the provided project instructions, the primary objective is to fully re
 *   **Paper Reproduction:** Choose an English scientific paper with detailed data/methodology. (Selected: *Overcoming catastrophic forgetting in neural networks* by Kirkpatrick et al., alongside insights from the *LifeLonger* benchmark).
 *   **Data & Implementation:** Use the datasets mentioned in the paper, reproduce all calculations, and recreate the original graphs to demonstrate exact or near-exact replication of the paper's findings.
 *   **Bonus Objective:** Improve upon the paper's results. Acceptable improvements include optimizing data processing, using more accurate models, proposing alternative data analysis approaches (e.g., applying the algorithms to the *LifeLonger* medical benchmark), or improving data visualization. Even well-reasoned unsuccessful attempts earn the bonus.
-*   **Submission Format:**
-    *   Python code with comments and run results uploaded to GitHub.
-    *   Instead of a standard written report, submit all AI interaction logs/documentation used during the development.
-    *   Recreated graphs compared directly against the original paper's graphs.
-    *   An oral defense presentation of the project and GitHub repository.
 
 ## 2. Detailed Task List and Coding Requirements (For the Coder Agent)
 
