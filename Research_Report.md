@@ -1,5 +1,7 @@
 # Research Report: Catastrophic Forgetting
 
+*Reproducibility Note: Full execution instructions, cross-platform setup commands, and source code are available in the accompanying `README.md` and GitHub repository to ensure complete reproducibility of these results.*
+
 ## 1. Project Goals and Requirements
 Based on the provided project instructions, the primary objective is to fully reproduce the results and graphs from a recognized scientific paper in the field of Artificial Intelligence, specifically focusing on **Catastrophic Forgetting**.
 
@@ -80,6 +82,14 @@ $$ \mathcal{L}(\theta) = \mathcal{L}_B(\theta) + \sum_i \frac{\lambda}{2} F_i (\
 ## 4. Phase 3: Evaluation and Comparison against Original Paper
 
 We successfully wrote a testing script (`src/plot_results.py`) that trained both a baseline model (Standard Stochastic Gradient Descent - SGD) and an Elastic Weight Consolidation (EWC) model on a sequence of 3 Permuted MNIST tasks. To evaluate catastrophic forgetting, we continuously tracked each model's performance on **Task 1** as they sequentially learned Task 2 and Task 3.
+
+### Experimental Hyperparameters
+To ensure exact replicability, the core experiment was conducted using the following parameters:
+*   **Optimizer:** Adam
+*   **Learning Rate (LR):** 1e-3
+*   **Batch Size:** 128
+*   **Epochs per Task:** 5
+*   **EWC Lambda ($\lambda$):** 400.0 (The penalty weight)
 
 **Final Accuracy Results on Task 1:**
 *   **Standard SGD Baseline:** 56.75%
