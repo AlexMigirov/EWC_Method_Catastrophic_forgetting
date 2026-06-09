@@ -20,7 +20,7 @@ The repository includes:
     *   `improvement.py`: Implements $O(1)$ Online EWC and the upgraded network.
     *   `bonus_solution.py`: Medical imaging continual learning simulation.
     *   Documentation Markdown files explaining the improvements.
-*   `Academic articals/`: Reference PDF papers.
+*   `Academic articles/`: Reference PDF papers.
 *   `data/`: Automatically generated directory for downloaded datasets (ignored by git).
 
 # Building and Running
