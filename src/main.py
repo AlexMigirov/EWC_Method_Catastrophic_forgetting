@@ -4,6 +4,7 @@ import torch.optim as optim
 from copy import deepcopy
 from model import MLP
 from data import get_dataloaders, get_permutation
+
 from ewc import EWC
 
 def train_epoch(model, optimizer, data_loader, ewc_instances, ewc_lambda, device):

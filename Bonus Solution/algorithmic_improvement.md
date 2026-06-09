@@ -1,4 +1,4 @@
-# True Algorithmic Improvement (Online EWC)
+# Phase 4 Bonus: True Algorithmic Improvement (Online EWC)
 
 ## 1. The Flaw in the Original 2017 Paper
 The original paper by Kirkpatrick et al. introduced Elastic Weight Consolidation (EWC) with a critical mathematical flaw regarding scalability:
