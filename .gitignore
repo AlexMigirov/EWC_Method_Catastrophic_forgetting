@@ -1,5 +1,14 @@
-venv/
+# Python
 __pycache__/
-*.pyc
-.DS_Store
-*.docx
+*.py[cod]
+*$py.class
+
+# Virtual environments
+venv/
+venv_win/
+env/
+.env
+
+# Data
+data/
+*.png

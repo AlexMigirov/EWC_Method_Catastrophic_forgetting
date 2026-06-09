@@ -1,4 +1,6 @@
 import torch
+import ssl
+ssl._create_default_https_context = ssl._create_unverified_context
 from torchvision import datasets, transforms
 from torch.utils.data import DataLoader
 
