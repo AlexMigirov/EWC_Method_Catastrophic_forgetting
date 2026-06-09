@@ -37,12 +37,6 @@ This document serves as the required log of AI interactions, prompts, and workfl
 *   **User Prompt:** *"can you create me 2 graphs for the new improved method in @Desktop\Python Project\Bonus Solution\** ? just like the 2 graphs you have created for me for the original EWC method (2017)."*
 *   **AI Action:** Created `plot_bonus_graph1.py` and `plot_bonus_graph2.py` within the `Bonus Solution` directory to generate visual proof of the algorithmic improvement, saving the outputs to the project root. Documented the flaw, the architectural fix, and the empirical proof in `algorithmic_improvement.md`.
 
-## 6. Educational Explanations & GitHub Preparation
-*   **User Prompt:** *"what is a 'Git repository'?"* and *"do i really ned the .gitignore file?"*
-*   **AI Action:** The AI explained Version Control, GitHub repositories, and provided a step-by-step guide for manually dragging and dropping the correct folders (emphasizing omitting the `venv` and `data` folders to avoid size limits).
-*   **User Prompt:** *"what is standard SGD and why its compared with EWC method?"*
-*   **AI Action:** Provided the following foundational explanation (which the user requested to attach beneath their graph on GitHub):
-
 ### Why Compare Standard SGD with EWC?
 **Standard SGD (Stochastic Gradient Descent)** is the default way neural networks learn. When trained on Task 1, it tunes its weights perfectly. But when moved to Task 2, it ruthlessly overwrites all those weights to minimize the new errors, completely destroying its memory of Task 1. This is known as **Catastrophic Forgetting**.
 
