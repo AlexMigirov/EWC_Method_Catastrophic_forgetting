@@ -46,7 +46,10 @@ Based on the provided project instructions, the primary objective is to fully re
 *   **Elastic Weight Consolidation (EWC):** An algorithm mimicking this biological process. It identifies which weights are most important for the tasks learned so far and heavily penalizes changes to them.
 *   **Mathematical Formulation:** EWC uses a Bayesian framework. The importance of each parameter is approximated using the diagonal of the **Fisher Information Matrix** ($F$). 
     *   When training on a new task ($B$), the loss function is modified to constrain the parameters ($\theta$) to stay close to their optimal values from the previous task ($\theta^*_A$).
-    *   **Loss Equation:** $\mathcal{L}(\theta) = \mathcal{L}_B(\theta) + \sum_i \frac{\lambda}{2} F_i (\theta_i - \theta^*_{A,i})^2$
+    *   **Loss Equation:** 
+        $$
+        \mathcal{L}(\theta) = \mathcal{L}_B(\theta) + \sum_i \frac{\lambda}{2} F_i (\theta_i - \theta^*_{A,i})^2
+        $$
     *   Here, $\lambda$ is a hyperparameter determining the importance of the old task compared to the new one, and $i$ indexes the network parameters.
 
 ### From: *LifeLonger: A Benchmark for Continual Disease Classification*
@@ -59,10 +62,16 @@ Based on the provided project instructions, the primary objective is to fully re
 The original paper frames the learning process from a probabilistic perspective. Finding the optimal parameters ($\theta$) for a neural network given some data ($D$) is equivalent to computing the conditional probability $p(\theta|D)$.
 
 According to Bayes' rule (Equation 1 in the paper):
-$$ \log p(\theta|D) = \log p(D|\theta) + \log p(\theta) - \log p(D) $$
+
+$$
+\log p(\theta|D) = \log p(D|\theta) + \log p(\theta) - \log p(D)
+$$
 
 When learning a new task (Task B) after already learning Task A, the data is split into $D_A$ and $D_B$. The equation is rearranged (Equation 2 in the paper) to show how previous knowledge is incorporated:
-$$ \log p(\theta|D) = \log p(D_B|\theta) + \log p(\theta|D_A) - \log p(D_B) $$
+
+$$
+\log p(\theta|D) = \log p(D_B|\theta) + \log p(\theta|D_A) - \log p(D_B)
+$$
 
 *   $\log p(D_B|\theta)$ is simply the negative loss function for the new Task B.
 *   $\log p(\theta|D_A)$ represents all the information the network learned from Task A. This is the "posterior probability" of the weights.
@@ -70,7 +79,10 @@ $$ \log p(\theta|D) = \log p(D_B|\theta) + \log p(\theta|D_A) - \log p(D_B) $$
 Because calculating the true posterior probability is computationally intractable for deep neural networks, the authors use a Laplace approximation. They approximate the posterior as a Gaussian distribution with a mean given by the optimal weights from Task A ($\theta^*_A$) and a precision given by the diagonal of the **Fisher Information Matrix ($F$)**.
 
 This leads to the core **EWC Loss Function** (Equation 3 in the paper) that we implemented:
-$$ \mathcal{L}(\theta) = \mathcal{L}_B(\theta) + \sum_i \frac{\lambda}{2} F_i (\theta_i - \theta^*_{A,i})^2 $$
+
+$$
+\mathcal{L}(\theta) = \mathcal{L}_B(\theta) + \sum_i \frac{\lambda}{2} F_i (\theta_i - \theta^*_{A,i})^2
+$$
 
 **Explanation of the terms:**
 *   $\mathcal{L}_B(\theta)$: The standard loss (e.g., cross-entropy) for the current task being learned (Task B).
