@@ -46,7 +46,7 @@ Based on the provided project instructions, the primary objective is to fully re
 *   **Elastic Weight Consolidation (EWC):** An algorithm mimicking this biological process. It identifies which weights are most important for the tasks learned so far and heavily penalizes changes to them.
 *   **Mathematical Formulation:** EWC uses a Bayesian framework. The importance of each parameter is approximated using the diagonal of the **Fisher Information Matrix** ($F$). 
     *   When training on a new task ($B$), the loss function is modified to constrain the parameters ($\theta$) to stay close to their optimal values from the previous task ($\theta^*_A$).
-    *   **Loss Equation:** $\mathcal{L}(\theta) = \mathcal{L}_B(\theta) + \sum_i \frac{\lambda}{2} F_i (\theta_i - \theta^*_{A,i})^2$
+    *   **Loss Equation:** $$\mathcal{L}(\theta) = \mathcal{L}_B(\theta) + \sum_i \frac{\lambda}{2} F_i (\theta_i - \theta^*_{A,i})^2$$
     *   Here, $\lambda$ is a hyperparameter determining the importance of the old task compared to the new one, and $i$ indexes the network parameters.
 
 ### From: *LifeLonger: A Benchmark for Continual Disease Classification*
