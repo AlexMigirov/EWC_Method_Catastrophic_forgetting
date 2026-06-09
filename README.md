@@ -1,5 +1,3 @@
-<img width="800" height="300" alt="image" src="https://github.com/user-attachments/assets/6149396c-2e96-4722-ae3d-d0fab7a44dad" />
-
 # Project Overview
 
 This is an academic Machine Learning project focused on implementing and reproducing the results of the 2017 paper **"Overcoming catastrophic forgetting in neural networks"** by Kirkpatrick et al. The project specifically implements **Elastic Weight Consolidation (EWC)**, a continual learning algorithm designed to mitigate catastrophic forgetting in neural networks by anchoring critical weights using the Fisher Information Matrix.
@@ -29,23 +27,46 @@ The repository includes:
 
 Dependencies are listed in `requirements.txt` and should be installed within a virtual environment.
 
-**Setup:**
+### Setup
+
+**Windows:**
 ```powershell
 python -m venv venv
-.\venv\Scripts\Activate.ps1
+.\venv\Scripts\activate
 pip install -r requirements.txt
 ```
 
-**Running the Core Project:**
+**Mac / Linux:**
+```bash
+python3 -m venv venv
+source venv/bin/activate
+pip install -r requirements.txt
+```
+
+### Running the Core Project
+
+**Windows:**
 ```powershell
 # Run the base training loop
-python src/main.py
+python src\main.py
 
 # Generate Graph 1: Performance on Task 1 while learning new tasks
-python src/plot_results.py
+python src\plot_results.py
 
 # Generate Graph 2: Average Performance Across Multiple Sequential Tasks
-python src/plot_graph2.py
+python src\plot_graph2.py
+```
+
+**Mac / Linux:**
+```bash
+# Run the base training loop
+python3 src/main.py
+
+# Generate Graph 1: Performance on Task 1 while learning new tasks
+python3 src/plot_results.py
+
+# Generate Graph 2: Average Performance Across Multiple Sequential Tasks
+python3 src/plot_graph2.py
 ```
 
 ### Why Compare Standard SGD with EWC?
@@ -55,7 +76,9 @@ python src/plot_graph2.py
 
 By comparing them, we prove the algorithm works: the Standard SGD graph plummets (showing forgetting), while the EWC graph remains stable, proving it successfully protected the network's prior knowledge.
 
-**Running the Bonus Implementations:**
+### Running the Bonus Implementations
+
+**Windows:**
 ```powershell
 # Run the LifeLonger continual disease classification simulation
 python "Bonus Solution\bonus_solution.py"
@@ -68,6 +91,21 @@ python "Bonus Solution\plot_bonus_graph1.py"
 
 # Generate Bonus Graph 2: Average Performance (Improved Online EWC)
 python "Bonus Solution\plot_bonus_graph2.py"
+```
+
+**Mac / Linux:**
+```bash
+# Run the LifeLonger continual disease classification simulation
+python3 "Bonus Solution/bonus_solution.py"
+
+# Run the O(1) Online EWC algorithmic improvement
+python3 "Bonus Solution/improvement.py"
+
+# Generate Bonus Graph 1: Performance on Task 1 (Improved Online EWC)
+python3 "Bonus Solution/plot_bonus_graph1.py"
+
+# Generate Bonus Graph 2: Average Performance (Improved Online EWC)
+python3 "Bonus Solution/plot_bonus_graph2.py"
 ```
 
 # Development Conventions
