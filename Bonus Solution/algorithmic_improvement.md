@@ -43,3 +43,12 @@ Improved Online EWC Task 1 Accuracy: 97.17%
 By fine-tuning the hyperparameters—specifically setting the Fisher decay factor $\gamma$ to 1.0 (to preserve older task importance completely) and significantly increasing the EWC penalty $\lambda$ (to 5000.0) to compensate for the running average nature of the Fisher matrix—we achieved phenomenal results.
 
 Not only did our **Online EWC** successfully maintain a constant $O(1)$ memory footprint, but it actually **outperformed** the original algorithm in terms of accuracy (97.17% vs 95.75%). The combination of removing the original algorithm's fatal $O(N)$ scaling flaw and modernizing the network's representations with Dropout proves to be a definitive algorithmic improvement over the 2017 paper's findings.
+
+## 4. Comparison to the LifeLonger Benchmark
+
+When comparing our Online EWC implementation to the standard EWC evaluated in the *LifeLonger* paper (Derakhshani et al., 2022), it is important to differentiate between direct accuracy and structural scalability:
+
+*   **Accuracy Context (Apples to Oranges):** The *LifeLonger* article evaluates EWC on complex medical datasets (MedMNIST) using a deep ResNet-18, achieving ~83-90% accuracy across varying tasks. Our 97.17% accuracy was achieved on Permuted MNIST using an improved MLP. Because the datasets and architectures differ so significantly, a direct numerical comparison is not viable.
+*   **The True Improvement ($O(1)$ vs $O(N)$ Memory):** The *LifeLonger* article utilized the standard version of EWC, meaning their model had to calculate and store a separate Fisher Information Matrix for every new task (scaling at $O(N)$ memory). In a real-world clinical setting with thousands of domains, this would quickly lead to an Out-Of-Memory crash. Our implementation of **Online EWC** resolves this critical structural flaw by maintaining a single running average of the Fisher matrix, ensuring a constant $O(1)$ memory footprint regardless of the number of diseases learned. 
+
+Therefore, while we cannot compare the raw accuracy percentages against the *LifeLonger* benchmarks, our **Online EWC** provides a mathematically superior and infinitely more scalable solution for continual clinical data streams than the standard EWC baseline used in the article.
